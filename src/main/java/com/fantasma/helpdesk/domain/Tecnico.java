@@ -2,7 +2,9 @@ package com.fantasma.helpdesk.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.fantasma.helpdesk.domain.dtos.TecnicoDTO;
 import com.fantasma.helpdesk.domain.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -20,12 +22,12 @@ public class Tecnico extends Pessoa {
 
 	public Tecnico() {
 		super();
-		addPerfis(Perfil.TECNICO);
+		addPerfis(Perfil.CLIENTE);
 	}
 
 	public Tecnico(Integer id, String nome, String cpf, String email, String senha) {
 		super(id, nome, cpf, email, senha);
-		addPerfis(Perfil.TECNICO);
+		addPerfis(Perfil.CLIENTE);
 	}
 
 	public List<Chamado> getChamados() {
@@ -36,5 +38,14 @@ public class Tecnico extends Pessoa {
 		this.chamados = chamados;
 	}
 	
-	
+	public Tecnico(TecnicoDTO obj) {
+		super();
+		this.id = obj.getId();
+		this.nome = obj.getNome();
+		this.cpf = obj.getCpf();
+		this.email = obj.getEmail();
+		this.senha = obj.getSenha();
+		this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
+		this.dataCriacao = obj.getDataCriacao();
+	}
 }
