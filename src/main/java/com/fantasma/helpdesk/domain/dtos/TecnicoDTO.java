@@ -10,15 +10,26 @@ import com.fantasma.helpdesk.domain.Tecnico;
 import com.fantasma.helpdesk.domain.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.validation.constraints.NotNull;
+
 public class TecnicoDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
 	protected Integer id;
+	
+	@NotNull(message = "O Campo Nome é requerido")
 	protected String nome;	
+	
+	@NotNull(message = "O Campo CPF é requerido")
 	protected String cpf;	
+	
+	@NotNull(message = "O Campo E-Mail é requerido")
 	protected String email;	
+	
+	@NotNull(message = "O Campo Senha é requerido")
 	protected String senha;	
+	
 	protected Set<Integer> perfis = new HashSet<>();
 	
 	@JsonFormat(pattern = "dd/MM/yyyy")
