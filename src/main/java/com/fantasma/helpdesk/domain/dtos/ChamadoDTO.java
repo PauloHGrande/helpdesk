@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import com.fantasma.helpdesk.domain.Chamado;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.validation.constraints.NotNull;
+
 public class ChamadoDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -15,12 +17,25 @@ public class ChamadoDTO implements Serializable{
 	private LocalDate dataAbertura = LocalDate.now();
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataFechamento;
+	
+	@NotNull(message = "O Campo Prioridade não pode ser Nulo")
 	private Integer prioridade;
+	
+	@NotNull(message = "O Campo Status não pode ser Nulo")
 	private Integer status;
+	
+	@NotNull(message = "O Campo Titulo não pode ser Nulo")
 	private String titulo;
+	
+	@NotNull(message = "O Campo Observação não pode ser Nulo")
 	private String observacoes;
+	
+	@NotNull(message = "O Campo Técnico não pode ser Nulo")
 	private Integer tecnico;	
+	
+	@NotNull(message = "O Campo Cliente não pode ser Nulo")
 	private Integer cliente;
+	
 	private String nomeTecnico;
 	private String nomeCliente;
 	

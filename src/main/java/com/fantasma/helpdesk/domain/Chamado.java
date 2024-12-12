@@ -148,5 +148,4 @@ public class Chamado implements Serializable{
 		return Objects.equals(id, other.id);
 	}
 	
-	
 }
