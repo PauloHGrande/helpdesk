@@ -2,7 +2,6 @@ package com.fantasma.helpdesk.config;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,6 +20,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
 import com.fantasma.helpdesk.security.JWTAuthenticationFilter;
+import com.fantasma.helpdesk.security.JWTAuthorizationFilter;
 import com.fantasma.helpdesk.security.JWTUtil;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -51,7 +51,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .addFilter(new JWTAuthenticationFilter(authenticationManager, jwtUtil))
-                //.addFilter(new JWTAuthorizationFilter(authenticationManager, jwtUtil, userDetailsService))
+                .addFilter(new JWTAuthorizationFilter(authenticationManager, jwtUtil, userDetailsService))
                 .authenticationManager(authenticationManager)
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
