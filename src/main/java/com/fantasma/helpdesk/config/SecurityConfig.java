@@ -74,7 +74,9 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.applyPermitDefaultValues();
+        configuration.setAllowedOrigins(List.of("http://localhost:4200", "https://helpdesk-fantasma.netlify.app"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"));
+        configuration.setAllowedHeaders(List.of("*"));
         
         // Use CorsConfigurationSource em vez de UrlBasedCorsConfigurationSource
         org.springframework.web.cors.CorsConfigurationSource source = new org.springframework.web.cors.CorsConfigurationSource() {
