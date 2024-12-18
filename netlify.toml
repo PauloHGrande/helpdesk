@@ -1,7 +1,3 @@
-[build]
-  command = "npm run build"
-  publish = "/biuld"
-  base = "/"
 [[redirects]]
   from = "/<path-to-access-cors-url>"
   to = "<cross-origin-url>"
