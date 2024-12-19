@@ -1,0 +1,14 @@
+Docker
+
+Criado o arquivo dockerfile
+
+Comandos para criar a imagem v1.
+docker build -t pauloggrande/helpdesk-backend:v1 .
+
+comando para rodar a imagem depois de criada.
+docker container run -d -p 8080:8080 pauloggrande/heldesk-backend:v1
+
+comando para enviar para o repositorio docler hub
+docker push pauloggrande/heldesk-backend:v1
+docker tag pauloggrande/heldesk-backend:v1 pauloggrande/heldesk-backend:latest
+docker push pauloggrande/heldesk-backend:latest
