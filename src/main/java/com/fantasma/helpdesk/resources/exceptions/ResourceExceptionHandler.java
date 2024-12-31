@@ -40,19 +40,19 @@ public class ResourceExceptionHandler {
 	}
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public ResponseEntity<StandardError> dataIntegrityViolationException(MethodArgumentNotValidException ex, HttpServletRequest request) {
+	public ResponseEntity<StandardError> validationErrors(MethodArgumentNotValidException ex, HttpServletRequest request) {
 		
-		ValidationError error = new ValidationError(System.currentTimeMillis(), 
+		ValidationError errors = new ValidationError(System.currentTimeMillis(), 
 												    HttpStatus.BAD_REQUEST.value(), 
-												    "Validation error", 
 												    "Erro na Validação dos Campos", 
+												    ex.getMessage(), 
 												    request.getRequestURI());
 		
 		for(FieldError x : ex.getBindingResult().getFieldErrors()) {
-			error.addError(x.getField(), x.getDefaultMessage());
+			errors.addError(x.getField(), x.getDefaultMessage());
 		}
 		
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
 	}
-
+	
 }
